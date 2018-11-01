@@ -1,0 +1,21 @@
+@import "../../../styles/colors";
+
+.Loader {
+  font-size: 45px;
+  color: $dark_green;
+  height: 30px;
+  width: 30px;
+  animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

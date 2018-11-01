@@ -1,0 +1,29 @@
+.ProductForm {
+  padding: 5px;
+  position: relative;
+  width: 300px;
+  background-color: #fff;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+
+  &-Outer {
+    position: absolute;
+    background-color: rgba(0, 0, 0, .3);
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+
+  &-Close {
+  }
+
+  &_Show {
+    display: block;
+  }
+
+  &_Hide {
+    display: none;
+  }
+}

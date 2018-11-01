@@ -1,0 +1,27 @@
+.Typography {
+  &-Text {
+    font-size: 1rem;
+    margin: 3px 0;
+  }
+
+  &-Title {
+    font-size: 1.35rem;
+    margin-bottom: 15px;
+  }
+
+  &_Header {
+    font-size: 1.5rem;
+  }
+
+  &_SubTitle {
+    font-size: 1.1rem;
+  }
+
+  &_NoMargin {
+    margin: 0;
+  }
+
+  &_TextBold {
+    font-weight: 600;
+  }
+}

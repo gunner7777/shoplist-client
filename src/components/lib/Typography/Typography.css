@@ -1,0 +1,19 @@
+.Typography-Text {
+  font-size: 1rem;
+  margin: 3px 0; }
+
+.Typography-Title {
+  font-size: 1.35rem;
+  margin-bottom: 15px; }
+
+.Typography_Header {
+  font-size: 1.5rem; }
+
+.Typography_SubTitle {
+  font-size: 1.1rem; }
+
+.Typography_NoMargin {
+  margin: 0; }
+
+.Typography_TextBold {
+  font-weight: 600; }

@@ -1,0 +1,39 @@
+@media screen and (max-width: 504px) {
+  .Typography {
+    &-Title {
+      font-size: 1.2rem;
+    }
+
+    &_Header {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+@media screen and (max-width: 445px) {
+  .Typography {
+    &_Header {
+      font-size: 1.1rem;
+    }
+    &_SubTitle {
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .Typography {
+    &_Header {
+      font-size: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .Typography {
+    &-Title {
+      font-size: 1.1rem;
+    }
+  }
+}
