@@ -37,12 +37,12 @@ export const addShoplistSuccess = data => ({
 });
 
 export const addShoplist = data => dispatch => {
-  dispatch(isLoading(false));
+  // dispatch(isLoading(false));
   axios
     .post(`${API.url}shopping/new`, data)
     .then(response => {
       dispatch(addShoplistSuccess(response.data));
-      dispatch(isLoading(true));
+      // dispatch(isLoading(true));
     })
     .catch(error => {
       console.error('Error', error);
@@ -55,12 +55,28 @@ export const updateShoplistSuccess = data => ({
 });
 
 export const updateShoplist = data => dispatch => {
-  dispatch(isLoading(false));
+  // dispatch(isLoading(false));
   axios
     .patch(`${API.url}shopping/edit/${data.id}`, data)
     .then(response => {
       dispatch(updateShoplistSuccess(response.data));
-      dispatch(isLoading(true));
+      // dispatch(isLoading(true));
+    })
+    .catch(error => {
+      console.error('Error', error);
+    });
+};
+
+export const deleteShoplistSuccess = id => ({
+  type: DELETE_SHOPLIST,
+  id,
+});
+
+export const deleteShoplist = id => dispatch => {
+  axios
+    .delete(`${API.url}shopping/delete/${id}`)
+    .then(response => {
+      dispatch(deleteShoplistSuccess(response.data._id));
     })
     .catch(error => {
       console.error('Error', error);

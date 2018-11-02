@@ -21,11 +21,17 @@ class ShoplistFormContainer extends PureComponent {
     const Shoplist = {
       products: prods,
       name: this.ShoplistName,
-      id: this.props.shoplistId,
+      // id: this.props.shoplistId,
     };
+    // console.log('SHOPLIST >  ', Shoplist);
 
-    if (this.props.modal.purpose === 'new') this.props.addShoplist(Shoplist);
-    else if (this.props.modal.purpose === 'update') this.props.updateShoplist(Shoplist);
+    if (this.props.modal.purpose === 'new') {
+      // console.log('add');
+      this.props.addShoplist(Shoplist);
+    } else if (this.props.modal.purpose === 'update') {
+      // console.log('update');
+      this.props.updateShoplist({ ...Shoplist, id: this.props.shoplistId });
+    }
 
     /* this.props.modal.purpose === 'new'
       ? this.props.addShoplist(Shoplist)
@@ -34,7 +40,7 @@ class ShoplistFormContainer extends PureComponent {
     // this.props.updateShoplist(Shoplist);
     // this.props.addShoplist(Shoplist);
 
-    if (this.props.isDone) this.closeWindow();
+    // if (this.props.isDone) this.closeWindow();
   }
 
   getShoplistName() {
@@ -49,6 +55,7 @@ class ShoplistFormContainer extends PureComponent {
 
     this.ShoplistName = this.getShoplistName().name;
     console.log('name', this.ShoplistName);
+    this.props.toggleShoplistWindow('close');
   }
 
   closeWindow() {
@@ -74,8 +81,9 @@ class ShoplistFormContainer extends PureComponent {
 
 const mapStateToProps = state => ({
   modal: state.modals,
-  isDone: state.shoplist.shoplist.isLoading,
+  // isDone: state.shoplist.shoplist.isLoading,
   productName: state.shoplist.shoplist.name,
+  shoplistId: state.shoplist.shoplist._id,
 });
 
 const mapDispatchToProps = dispatch => ({
