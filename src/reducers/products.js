@@ -58,7 +58,7 @@ export const products = (state = initialState, action) => {
         }
         return item;
       });
-      console.log('update reducer', action.data);
+      // console.log('update reducer', action.data);
       return {
         ...state,
         products: updateProducts,

@@ -15,8 +15,7 @@ class Badge extends PureComponent {
   handleClick() {
     // send id parent controller
     // if (this.state.isCheck === false)
-    // this.props.getIdProduct({ id: this.props.productId, bool: !this.state.isCheck });
-    this.props.getIdProduct(this.props.productId);
+    this.props.getIdProduct({ id: this.props.productId, bool: !this.state.isCheck });
 
     this.setState({
       isCheck: !this.state.isCheck,

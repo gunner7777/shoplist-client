@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { addShoplist, updateShoplist } from '../../actions/shoplistActions';
+import { addShoplist, updateShoplist, cleanChosenProducts } from '../../actions/shoplistActions';
 import { toggleShoplistWindow } from '../../actions/modalsActions';
 import ShoplistForm from './ShoplistForm';
 
@@ -11,56 +11,58 @@ class ShoplistFormContainer extends PureComponent {
     super();
 
     this.saveShoplist = this.saveShoplist.bind(this);
-    this.getCheckedId = this.getCheckedId.bind(this);
-    this.getShoplistName = this.getShoplistName.bind(this);
+    // this.getCheckedId = this.getCheckedId.bind(this);
+    // this.getShoplistName = this.getShoplistName.bind(this);
     this.closeWindow = this.closeWindow.bind(this);
-    let ShoplistName;
+    // let ShoplistName;
   }
 
-  getCheckedId(prods) {
+  /* getCheckedId(prods) {
+    console.log('object', prods);
     const Shoplist = {
       products: prods,
       name: this.ShoplistName,
-      // id: this.props.shoplistId,
     };
-    // console.log('SHOPLIST >  ', Shoplist);
+    setTimeout(() => {
+      if (this.props.modal.purpose === 'new') {
+        this.props.addShoplist(Shoplist);
+      } else if (this.props.modal.purpose === 'update') {
+        this.props.updateShoplist({ ...Shoplist, id: this.props.shoplistId });
+        console.log('saved', this.props.modal.purpose);
+      }
+    }, 1550);
+  } */
 
-    if (this.props.modal.purpose === 'new') {
-      // console.log('add');
-      this.props.addShoplist(Shoplist);
-    } else if (this.props.modal.purpose === 'update') {
-      // console.log('update');
-      this.props.updateShoplist({ ...Shoplist, id: this.props.shoplistId });
-    }
-
-    /* this.props.modal.purpose === 'new'
-      ? this.props.addShoplist(Shoplist)
-      : this.props.updateShoplist(Shoplist); */
-
-    // this.props.updateShoplist(Shoplist);
-    // this.props.addShoplist(Shoplist);
-
-    // if (this.props.isDone) this.closeWindow();
-  }
-
-  getShoplistName() {
+  /* getShoplistName() {
     return {
       name: this.inputName.state.value,
     };
-  }
+  } */
 
   saveShoplist() {
     // work when delete from DOM
     // this.props.history.push('/products');
+    // console.log('name 1', this.inputName.state.value);
+    // this.ShoplistName = this.getShoplistName().name;
+    // console.log('name', this.ShoplistName);
 
-    this.ShoplistName = this.getShoplistName().name;
-    console.log('name', this.ShoplistName);
+    const Shoplist = {
+      products: this.props.chosenProducts,
+      name: this.inputName.state.value,
+    };
+
+    if (this.props.modal.purpose === 'new') {
+      this.props.addShoplist(Shoplist);
+    } else if (this.props.modal.purpose === 'update') {
+      this.props.updateShoplist({ ...Shoplist, id: this.props.shoplistId });
+      // console.log('saved', this.props.modal.purpose);
+    }
     this.props.toggleShoplistWindow('close');
   }
 
   closeWindow() {
     this.props.toggleShoplistWindow('close');
-    // this.props.clearCurrentProduct();
+    this.props.cleanChosenProducts();
   }
 
   render() {
@@ -84,12 +86,14 @@ const mapStateToProps = state => ({
   // isDone: state.shoplist.shoplist.isLoading,
   productName: state.shoplist.shoplist.name,
   shoplistId: state.shoplist.shoplist._id,
+  chosenProducts: state.shoplist.chosenProducts,
 });
 
 const mapDispatchToProps = dispatch => ({
   addShoplist: data => dispatch(addShoplist(data)),
   updateShoplist: data => dispatch(updateShoplist(data)),
   toggleShoplistWindow: purpose => dispatch(toggleShoplistWindow(purpose)),
+  cleanChosenProducts: () => dispatch(cleanChosenProducts()),
 });
 
 export default withRouter(

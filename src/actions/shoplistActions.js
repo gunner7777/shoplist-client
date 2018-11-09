@@ -5,6 +5,8 @@ import {
   UPDATE_SHOPLIST,
   GET_SHOPLIST,
   SHOPLIST_IS_LOADING,
+  TOGGLE_PRODUCT_IN_SHOPLIST,
+  CLEAN_CHOOSEN_PRODUCTS_IN_SHOPLIST,
 } from '../constants/actionTypes';
 import { API } from '../constants/constants';
 
@@ -82,3 +84,12 @@ export const deleteShoplist = id => dispatch => {
       console.error('Error', error);
     });
 };
+
+export const toggleProductInShoplist = chosenProducts => ({
+  type: TOGGLE_PRODUCT_IN_SHOPLIST,
+  chosenProducts,
+});
+
+export const cleanChosenProducts = () => ({
+  type: CLEAN_CHOOSEN_PRODUCTS_IN_SHOPLIST,
+});

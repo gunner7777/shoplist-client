@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import ManageShoplist from './ManageShoplist';
-import { getShoplist } from '../../actions/shoplistActions';
+import { getShoplist, deleteShoplist } from '../../actions/shoplistActions';
 import Loader from '../lib/Loader';
+import Typography from '../lib/Typography';
 
 class ManageShoplistContainer extends PureComponent {
   constructor() {
@@ -16,6 +17,9 @@ class ManageShoplistContainer extends PureComponent {
   render() {
     if (this.props.shoplist.isLoading) return <Loader />;
 
+    if (JSON.stringify(this.props.shoplist.shoplist) === '{}')
+      return <Typography>Fresh shoplist not found</Typography>;
+
     return <ManageShoplist {...this.props.shoplist.shoplist} />;
   }
 }
@@ -26,6 +30,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getShoplist: () => dispatch(getShoplist()),
+  deleteShoplist: id => dispatch(deleteShoplist(id)),
 });
 
 export default connect(
