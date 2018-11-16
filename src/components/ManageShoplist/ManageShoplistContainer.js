@@ -14,13 +14,22 @@ class ManageShoplistContainer extends PureComponent {
     this.props.getShoplist();
   }
 
+  shouldComponentUpdate(nextProps) {
+    return nextProps.shoplist === this.props.shoplist;
+  }
+
   render() {
+    console.log('render');
+    // const shopl = this.props.shoplist.shoplist;
+    // const {isLoading, }
     if (this.props.shoplist.isLoading) return <Loader />;
 
     if (JSON.stringify(this.props.shoplist.shoplist) === '{}')
       return <Typography>Fresh shoplist not found</Typography>;
+    // if (JSON.stringify(shopl) === '{}') return <Typography>Fresh shoplist not found</Typography>;
 
     return <ManageShoplist {...this.props.shoplist.shoplist} />;
+    // return <ManageShoplist {...shopl} />;
   }
 }
 

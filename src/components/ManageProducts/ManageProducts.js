@@ -6,6 +6,7 @@ import ProductCardContainer from '../ProductCard/ProductCardContainer';
 import './ProductManager.scss';
 
 const ManageProducts = ({ products, showForm }) => {
+  console.log('object', products);
   const productsList = products.map(item => <ProductCardContainer {...item} key={item._id} />);
 
   return (

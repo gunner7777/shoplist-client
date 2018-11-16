@@ -12,6 +12,12 @@ class ProductCardContainer extends PureComponent {
     this.showForm = this.showForm.bind(this);
   }
 
+  /*shouldComponentUpdate(nextProps) {
+    // console.log('nextProps', nextProps);
+    // console.log('this.props', this.props);
+    return nextProps.name === this.props.name;
+  } */
+
   deleteClick(e) {
     this.props.deleteProduct(e.currentTarget.parentNode.dataset.productid);
   }
@@ -22,6 +28,7 @@ class ProductCardContainer extends PureComponent {
   }
 
   render() {
+    console.log('Product render');
     return (
       <ProductCard {...this.props} deleteProduct={this.deleteClick} formProduct={this.showForm} />
     );

@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { allProducts } from './ManageProductsSelectors';
 import { getProducts } from '../../actions/productActions';
 import { toggleProductWindow } from '../../actions/modalsActions';
 import ManageProducts from './ManageProducts';
@@ -22,6 +23,7 @@ class ManageProductsContainer extends PureComponent {
   }
 
   render() {
+    console.log('object');
     if (this.props.products.isLoading) return <Loader />;
 
     return <ManageProducts {...this.props.products} showForm={this.showSaveForm} />;
@@ -29,7 +31,8 @@ class ManageProductsContainer extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  products: state.products,
+  // products: state.products,
+  products: allProducts(state),
 });
 
 const mapDispatchToProps = dispatch => ({
