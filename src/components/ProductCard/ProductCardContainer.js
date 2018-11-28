@@ -1,21 +1,22 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import { deleteProduct, getProduct } from '../../actions/productActions';
 import { toggleProductWindow } from '../../actions/modalsActions';
 
-class ProductCardContainer extends PureComponent {
+class ProductCardContainer extends Component {
   constructor() {
     super();
     this.deleteClick = this.deleteClick.bind(this);
     this.showForm = this.showForm.bind(this);
   }
 
-  /*shouldComponentUpdate(nextProps) {
-    // console.log('nextProps', nextProps);
-    // console.log('this.props', this.props);
-    return nextProps.name === this.props.name;
+  // render if true, if === return false
+
+  /* shouldComponentUpdate(nextProps) {
+    if (nextProps.name === this.props.name) return false;
+    return true;
   } */
 
   deleteClick(e) {
@@ -28,7 +29,6 @@ class ProductCardContainer extends PureComponent {
   }
 
   render() {
-    console.log('Product render');
     return (
       <ProductCard {...this.props} deleteProduct={this.deleteClick} formProduct={this.showForm} />
     );

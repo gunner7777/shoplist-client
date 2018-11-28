@@ -6,30 +6,22 @@ import Loader from '../lib/Loader';
 import Typography from '../lib/Typography';
 
 class ManageShoplistContainer extends PureComponent {
-  constructor() {
-    super();
-  }
-
   componentDidMount() {
     this.props.getShoplist();
   }
 
-  shouldComponentUpdate(nextProps) {
+  /* shouldComponentUpdate(nextProps) {
     return nextProps.shoplist === this.props.shoplist;
-  }
+  } */
 
   render() {
-    console.log('render');
-    // const shopl = this.props.shoplist.shoplist;
-    // const {isLoading, }
-    if (this.props.shoplist.isLoading) return <Loader />;
+    const { isLoading, shoplist } = this.props.shoplist;
 
-    if (JSON.stringify(this.props.shoplist.shoplist) === '{}')
-      return <Typography>Fresh shoplist not found</Typography>;
-    // if (JSON.stringify(shopl) === '{}') return <Typography>Fresh shoplist not found</Typography>;
+    if (isLoading) return <Loader />;
 
-    return <ManageShoplist {...this.props.shoplist.shoplist} />;
-    // return <ManageShoplist {...shopl} />;
+    if (JSON.stringify(shoplist) === '{}') return <Typography>Fresh shoplist not found</Typography>;
+
+    return <ManageShoplist {...shoplist} />;
   }
 }
 

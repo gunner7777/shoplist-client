@@ -36,9 +36,12 @@ class ProductFormContainer extends PureComponent {
     this.props.modal.purpose === 'new'
       ? this.addAndRefreshProductList(Product)
       : this.props.updateProduct({ ...Product, id: this.props.currProduct._id });
+
+    this.props.toggleProductWindow('close');
   }
 
   render() {
+    console.log('MODAL RENDER >>>');
     const productName =
       JSON.stringify(this.props.currProduct) === '{}' ? '' : this.props.currProduct.name;
     return (
