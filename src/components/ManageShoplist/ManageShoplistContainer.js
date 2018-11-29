@@ -4,6 +4,7 @@ import ManageShoplist from './ManageShoplist';
 import { getShoplist, deleteShoplist } from '../../actions/shoplistActions';
 import Loader from '../lib/Loader';
 import Typography from '../lib/Typography';
+import { CreateButton } from '../lib/Button';
 
 class ManageShoplistContainer extends PureComponent {
   componentDidMount() {
@@ -19,7 +20,13 @@ class ManageShoplistContainer extends PureComponent {
 
     if (isLoading) return <Loader />;
 
-    if (JSON.stringify(shoplist) === '{}') return <Typography>Fresh shoplist not found</Typography>;
+    if (JSON.stringify(shoplist) === '{}')
+      return (
+        <React.Fragment>
+          <CreateButton createItem />
+          <Typography>Fresh shoplist not found</Typography>
+        </React.Fragment>
+      );
 
     return <ManageShoplist {...shoplist} />;
   }

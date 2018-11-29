@@ -4,6 +4,7 @@ import ShoplistHeaderContainer from '../ShoplistHeader/ShoplistHeaderContainer';
 import ProductInList from '../ProductInList';
 // import ProductObserverContainer from '../ProductObserver/ProductObserverContainer';
 import ShoplistFormContainer from '../ShoplistForm/ShoplistFormContainer';
+import { CreateButton } from '../lib/Button';
 import './ManageShoplist.scss';
 
 const ManageShoplist = ({ name, products, _id }) => {
