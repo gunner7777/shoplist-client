@@ -7,16 +7,17 @@ import ShoplistFormContainer from '../ShoplistForm/ShoplistFormContainer';
 import { CreateButton } from '../lib/Button';
 import './ManageShoplist.scss';
 
-const ManageShoplist = ({ name, products, _id }) => {
-  const shopList = products.map((item, index) => (
+const ManageShoplist = props => {
+  console.log('asdasdsd', props.shoplist.products);
+  const shopList = props.shoplist.products.map((item, index) => (
     <ProductInList name={item.name} key={item._id} number={index + 1} />
   ));
   return (
     <div>
-      <ShoplistHeaderContainer nameList={name} id={_id} />
+      <ShoplistHeaderContainer nameList={props.shoplist.name} id={props.shoplist._id} />
       {shopList}
       {/* <ProductObserverContainer /> */}
-      <ShoplistFormContainer shoplistId={_id} />
+      <ShoplistFormContainer shoplistId={props.shoplist._id} />
     </div>
   );
 };

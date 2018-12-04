@@ -9,14 +9,14 @@ class ShoplistHeaderContainer extends PureComponent {
   constructor() {
     super();
 
-    this.newShoplist = this.newShoplist.bind(this);
+    // this.newShoplist = this.newShoplist.bind(this);
     this.updateShoplist = this.updateShoplist.bind(this);
     this.deleteCurrentShoplist = this.deleteCurrentShoplist.bind(this);
   }
 
-  newShoplist() {
+  /* newShoplist() {
     this.props.toggleShoplistWindow('new');
-  }
+  } */
 
   updateShoplist() {
     this.props.toggleShoplistWindow('update');
@@ -29,7 +29,7 @@ class ShoplistHeaderContainer extends PureComponent {
   render() {
     return (
       <ShoplistHeader
-        addForm={this.newShoplist}
+        // addForm={this.newShoplist}
         updateForm={this.updateShoplist}
         nameList={this.props.nameList}
         id={this.props.id}

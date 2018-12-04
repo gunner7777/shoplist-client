@@ -4,9 +4,6 @@ import Badge from '../lib/Badge';
 import Typography from '../lib/Typography';
 
 const ProductObserver = ({ productsIdInList, allProducts, getIdProduct }) => {
-  /* if (allProducts.products.length === 0) {
-     // return false;
-  } */
   const productsList = allProducts.products.map(item => {
     const checkBool = productsIdInList.indexOf(item._id) !== -1;
     return (
