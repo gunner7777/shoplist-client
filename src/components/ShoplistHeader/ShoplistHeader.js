@@ -7,7 +7,7 @@ import './ShoplistHeader.scss';
 
 const ShoplistHeader = ({ nameList, id, addForm, updateForm, deleteShoplist }) => (
   <div className="ShopListHeader Flex">
-    <CreateButton createItem={addForm} />
+    {/* <CreateButton createItem={addForm} /> */}
     <Typography>{nameList}</Typography>
     <GroupButton shoplistId={id}>
       <EditButton showForm={updateForm} />

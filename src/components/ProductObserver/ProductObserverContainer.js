@@ -1,19 +1,19 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ProductObserver from './ProductObserver';
 import { getProducts } from '../../actions/productActions';
 import { toggleProductInShoplist } from '../../actions/shoplistActions';
+import { productsIdListSelector } from './ProductObserverSelectors';
 
-class ProductObserverContainer extends PureComponent {
+class ProductObserverContainer extends Component {
   constructor() {
     super();
     this.getId = this.getId.bind(this);
   }
 
   componentDidMount() {
-    // temp func
-    this.props.fetchData();
+    if (this.props.products.length === 0) this.props.fetchData();
     this.props.toggleProductInShoplist(
       this.props.modalPurpose !== 'new' ? this.props.productsIdList : [],
     );
@@ -25,15 +25,14 @@ class ProductObserverContainer extends PureComponent {
     // если нет добавляем
     // если есть то убираем
     // полученный массив отправляем в хранилище
-    // console.log('ididid', id);
-    // console.log('choose', this.props.chosenProducts);
-    // const chosenProds = this.props.productsIdList;
 
+    // Если нет в списке - добавляем
     if (this.props.chosenProducts.indexOf(id) === -1)
       this.props.toggleProductInShoplist([...this.props.chosenProducts, id]);
+    // Такой уже есть, убираем его из списка
     else if (this.props.chosenProducts.indexOf(id) !== -1) {
-      const re = this.props.chosenProducts.filter(item => item !== id);
-      this.props.toggleProductInShoplist(re);
+      const updatedList = this.props.chosenProducts.filter(item => item !== id);
+      this.props.toggleProductInShoplist(updatedList);
     }
   }
 
@@ -51,8 +50,9 @@ class ProductObserverContainer extends PureComponent {
 ProductObserverContainer.propTypes = {};
 
 const mapStateToProps = state => ({
-  productsIdList: state.shoplist.shoplist.products.map(item => item._id),
-  products: state.products,
+  // productsIdList: state.shoplist.shoplist.products.map(item => item._id),
+  productsIdList: productsIdListSelector(state),
+  products: state.products.products,
   modalPurpose: state.modals.purpose,
   chosenProducts: state.shoplist.chosenProducts,
 });

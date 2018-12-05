@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Input from '../lib/Input';
 import { SaveButton, CloseButton } from '../lib/Button';
-
 import Typography from '../lib/Typography';
 import './ProductForm.scss';
 

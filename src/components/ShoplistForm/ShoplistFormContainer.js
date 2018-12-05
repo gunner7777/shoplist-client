@@ -11,33 +11,8 @@ class ShoplistFormContainer extends PureComponent {
     super();
 
     this.saveShoplist = this.saveShoplist.bind(this);
-    // this.getCheckedId = this.getCheckedId.bind(this);
-    // this.getShoplistName = this.getShoplistName.bind(this);
     this.closeWindow = this.closeWindow.bind(this);
-    // let ShoplistName;
   }
-
-  /* getCheckedId(prods) {
-    console.log('object', prods);
-    const Shoplist = {
-      products: prods,
-      name: this.ShoplistName,
-    };
-    setTimeout(() => {
-      if (this.props.modal.purpose === 'new') {
-        this.props.addShoplist(Shoplist);
-      } else if (this.props.modal.purpose === 'update') {
-        this.props.updateShoplist({ ...Shoplist, id: this.props.shoplistId });
-        console.log('saved', this.props.modal.purpose);
-      }
-    }, 1550);
-  } */
-
-  /* getShoplistName() {
-    return {
-      name: this.inputName.state.value,
-    };
-  } */
 
   saveShoplist() {
     // work when delete from DOM
@@ -55,7 +30,6 @@ class ShoplistFormContainer extends PureComponent {
       this.props.addShoplist(Shoplist);
     } else if (this.props.modal.purpose === 'update') {
       this.props.updateShoplist({ ...Shoplist, id: this.props.shoplistId });
-      // console.log('saved', this.props.modal.purpose);
     }
     this.props.toggleShoplistWindow('close');
   }
@@ -83,7 +57,6 @@ class ShoplistFormContainer extends PureComponent {
 
 const mapStateToProps = state => ({
   modal: state.modals,
-  // isDone: state.shoplist.shoplist.isLoading,
   productName: state.shoplist.shoplist.name,
   shoplistId: state.shoplist.shoplist._id,
   chosenProducts: state.shoplist.chosenProducts,

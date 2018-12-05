@@ -6,7 +6,6 @@ import './ProductManager.scss';
 
 class ManageProducts extends PureComponent {
   render() {
-    // console.log('object', this.props);
     const { products, showForm } = this.props;
     const productsList = products.map(item => <ProductCardContainer {...item} key={item._id} />);
 
@@ -21,7 +20,12 @@ class ManageProducts extends PureComponent {
 
 ManageProducts.propTypes = {
   showForm: PropTypes.func,
-  products: PropTypes.array,
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      _id: PropTypes.string,
+    }),
+  ),
 };
 
 export default ManageProducts;
