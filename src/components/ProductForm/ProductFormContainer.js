@@ -41,7 +41,6 @@ class ProductFormContainer extends PureComponent {
   }
 
   render() {
-    console.log('MODAL RENDER >>>');
     const productName =
       JSON.stringify(this.props.currProduct) === '{}' ? '' : this.props.currProduct.name;
     return (

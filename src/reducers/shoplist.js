@@ -39,9 +39,6 @@ export const shoplist = (state = initialState, action) => {
     case DELETE_SHOPLIST:
       return {
         ...state,
-        /*shoplist: state.shoplist.filter(item => {
-          if (item.id !== action.id) return item;
-        }), */
         shoplist: {},
       };
 

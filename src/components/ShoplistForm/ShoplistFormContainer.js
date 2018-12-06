@@ -21,10 +21,6 @@ class ShoplistFormContainer extends Component {
 
   saveShoplist() {
     // work when delete from DOM
-    // this.props.history.push('/products');
-    // console.log('name 1', this.inputName.state.value);
-    // this.ShoplistName = this.getShoplistName().name;
-    // console.log('name', this.ShoplistName);
     const Shoplist = {
       products: this.props.chosenProducts,
       name: this.inputName.state.value,
@@ -44,7 +40,6 @@ class ShoplistFormContainer extends Component {
   }
 
   render() {
-    console.log('render from');
     return (
       <ShoplistForm
         closeWindow={this.closeWindow}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ManageShoplist from './ManageShoplist';
 import { getShoplist, deleteShoplist } from '../../actions/shoplistActions';
@@ -25,6 +26,8 @@ class ManageShoplistContainer extends Component {
     );
   }
 }
+
+ManageShoplistContainer.propTypes = {};
 
 const mapStateToProps = state => ({ shoplist: state.shoplist });
 

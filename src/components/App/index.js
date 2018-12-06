@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faPlus,
@@ -23,17 +24,23 @@ library.add([faPlus, faMinus, faSave, faEdit, faAngleLeft, faTimes, faFileAlt, f
 
 class App extends PureComponent {
   render() {
+    const { showProductForm, showShoplistForm } = this.props;
     return (
       <div className="App">
         <Header />
         <Content />
         <Footer />
-        {this.props.showProductForm && <ProductFormContainer />}
-        {this.props.showShoplistForm && <ShoplistFormContainer />}
+        {showProductForm && <ProductFormContainer />}
+        {showShoplistForm && <ShoplistFormContainer />}
       </div>
     );
   }
 }
+
+App.propTypes = {
+  showProductForm: PropTypes.bool,
+  showShoplistForm: PropTypes.bool,
+};
 
 const mapStateToProps = state => ({
   showProductForm: state.modals.isShowProductForm,

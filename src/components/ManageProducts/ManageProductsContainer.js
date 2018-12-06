@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getProducts } from '../../actions/productActions';
@@ -33,6 +34,20 @@ class ManageProductsContainer extends Component {
     return <ManageProducts products={products} showForm={this.showSaveForm} />;
   }
 }
+
+ManageProductsContainer.propTypes = {
+  fetchData: PropTypes.func,
+  toggleProductWindow: PropTypes.func,
+  productsInfo: PropTypes.objectOf({
+    isLoading: PropTypes.bool,
+    products: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        _id: PropTypes.string,
+      }),
+    ),
+  }),
+};
 
 const mapStateToProps = state => ({ productsInfo: state.products });
 

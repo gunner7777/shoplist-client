@@ -43,7 +43,6 @@ export const deleteProduct = id => dispatch => {
     .delete(`${API.url}products/delete/${id}`)
     .then(response => {
       dispatch(deleteProductSuccess(id));
-      console.log(response.data);
     })
     .catch(error => {
       console.error('Error', error);
@@ -60,7 +59,6 @@ export const addProduct = data => dispatch => {
     .post(`${API.url}products/new`, data)
     .then(response => {
       dispatch(addProductSuccess(response.data));
-      // dispatch(getProducts());
     })
     .catch(error => {
       console.error('Error', error);
