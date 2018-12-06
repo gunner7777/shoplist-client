@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -6,12 +6,17 @@ import { addShoplist, updateShoplist, cleanChosenProducts } from '../../actions/
 import { toggleShoplistWindow } from '../../actions/modalsActions';
 import ShoplistForm from './ShoplistForm';
 
-class ShoplistFormContainer extends PureComponent {
+class ShoplistFormContainer extends Component {
   constructor() {
     super();
 
     this.saveShoplist = this.saveShoplist.bind(this);
     this.closeWindow = this.closeWindow.bind(this);
+  }
+
+  shouldComponentUpdate(props) {
+    if (props.productName === this.props.productName) return false;
+    return true;
   }
 
   saveShoplist() {
@@ -20,7 +25,6 @@ class ShoplistFormContainer extends PureComponent {
     // console.log('name 1', this.inputName.state.value);
     // this.ShoplistName = this.getShoplistName().name;
     // console.log('name', this.ShoplistName);
-
     const Shoplist = {
       products: this.props.chosenProducts,
       name: this.inputName.state.value,
@@ -40,6 +44,7 @@ class ShoplistFormContainer extends PureComponent {
   }
 
   render() {
+    console.log('render from');
     return (
       <ShoplistForm
         closeWindow={this.closeWindow}
