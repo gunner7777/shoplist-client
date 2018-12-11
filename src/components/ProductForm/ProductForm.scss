@@ -1,7 +1,7 @@
 .ProductForm {
-  padding: 5px;
+  padding: 30px 15px;
   position: relative;
-  width: 300px;
+  max-width: 300px;
   background-color: #fff;
   margin: 0 auto;
   top: 50%;
@@ -17,6 +17,9 @@
   }
 
   &-Close {
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 
   &_Show {
@@ -25,5 +28,11 @@
 
   &_Hide {
     display: none;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .ProductForm {
+    margin: 0 5px;
   }
 }

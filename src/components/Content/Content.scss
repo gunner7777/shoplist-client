@@ -2,3 +2,9 @@
   flex: 1;
   padding: 15px;
 }
+
+@media all and (max-width: 300px) {
+  .Content {
+    padding: 15px 5px;
+  }
+}

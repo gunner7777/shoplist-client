@@ -1,4 +1,12 @@
 .ProductCard {
   margin: 10px 0;
   padding: 0 15px;
+
+  &-Name {
+    word-break: break-all;
+    flex: 0 1 80%;
+  }
+  &-Button {
+    flex: 0 1 20%;
+  }
 }

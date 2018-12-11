@@ -10,5 +10,5 @@ export const menuItems = [
 ];
 
 export const API = {
-  url: 'http://localhost:8080/api/v1/',
+  url: 'http://192.168.0.6:8080/api/v1/',
 };

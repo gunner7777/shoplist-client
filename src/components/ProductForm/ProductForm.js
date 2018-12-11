@@ -7,15 +7,15 @@ import './ProductForm.scss';
 
 const ProductForm = ({ show, closeWindow, inputRef, inputValue, saveProduct }) => (
   <div className={`ProductForm-Outer ${show ? 'ProductForm_Show' : 'ProductForm_Hide'}`}>
-    <div className="ProductForm text-center">
+    <div className="ProductForm">
       <div className="ProductForm-Close text-right">
         <CloseButton closeForm={closeWindow} />
       </div>
-      <Typography variant="title" tag="h3">
+      <Typography variant="title" tag="h3" modClass="text-center">
         Product name
       </Typography>
       <Input label="Name" ref={inputRef} currValue={inputValue} />
-      <SaveButton saveItem={saveProduct} />
+      <SaveButton saveItem={saveProduct} mod="Button_Center" />
     </div>
   </div>
 );

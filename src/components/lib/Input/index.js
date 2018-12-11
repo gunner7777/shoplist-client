@@ -35,8 +35,8 @@ class Input extends PureComponent {
 
     return (
       <div className="Input">
-        <label className="Input-Label">
-          {label}
+        <label className="Input-Block">
+          <span className="Input-Label">{label}</span>
           <input
             className="Input-Input"
             type="text"

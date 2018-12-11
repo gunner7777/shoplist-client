@@ -7,12 +7,13 @@ import './ProductCard.scss';
 
 const ProductCard = ({ name, _id, deleteProduct, formProduct }) => (
   <div className="ProductCard Flex Flex_jcSB">
-    <Typography>{name}</Typography>
-
-    <GroupButton productId={_id}>
-      <EditButton showForm={formProduct} />
-      <DeleteButton deleteItem={deleteProduct} />
-    </GroupButton>
+    <Typography modClass="ProductCard-Name">{name}</Typography>
+    <div className="ProductCard-Button">
+      <GroupButton productId={_id}>
+        <EditButton showForm={formProduct} />
+        <DeleteButton deleteItem={deleteProduct} />
+      </GroupButton>
+    </div>
   </div>
 );
 
