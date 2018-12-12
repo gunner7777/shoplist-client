@@ -15,7 +15,7 @@ class ManageShoplist extends PureComponent {
       return <Loader />;
     }
 
-    const createButton = <CreateButton createItem={createList} />;
+    const createButton = <CreateButton createItem={createList} mod="Button_FixedToBottom" />;
 
     if (JSON.stringify(shoplist) === '{}')
       return (
