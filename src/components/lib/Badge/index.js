@@ -12,20 +12,18 @@ class Badge extends PureComponent {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentDidMount() {
+    this.setState({
+      isCheck: this.props.Checked,
+    });
+  }
+
   handleClick() {
     // send id parent controller
-    // if (this.state.isCheck === false)
-    // this.props.getIdProduct({ id: this.props.productId, bool: !this.state.isCheck });
     this.props.getIdProduct(this.props.productId);
 
     this.setState({
       isCheck: !this.state.isCheck,
-    });
-  }
-
-  componentDidMount() {
-    this.setState({
-      isCheck: this.props.Checked,
     });
   }
 
@@ -44,6 +42,8 @@ class Badge extends PureComponent {
 Badge.propTypes = {
   children: PropTypes.node.isRequired,
   getIdProduct: PropTypes.func,
+  Checked: PropTypes.bool,
+  productId: PropTypes.string,
 };
 
 export default Badge;

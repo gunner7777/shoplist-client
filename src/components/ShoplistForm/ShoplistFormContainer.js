@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { addShoplist, updateShoplist, cleanChosenProducts } from '../../actions/shoplistActions';
@@ -53,7 +53,19 @@ class ShoplistFormContainer extends Component {
   }
 }
 
-// ShoplistFormContainer.propTypes = {};
+ShoplistFormContainer.propTypes = {
+  modal: PropTypes.shape({
+    purpose: PropTypes.string,
+    isShowShoplistForm: PropTypes.bool,
+  }),
+  productName: PropTypes.string,
+  shoplistId: PropTypes.string,
+  chosenProducts: PropTypes.arrayOf(PropTypes.string),
+  addShoplist: PropTypes.func,
+  updateShoplist: PropTypes.func,
+  toggleShoplistWindow: PropTypes.func,
+  cleanChosenProducts: PropTypes.func,
+};
 
 const mapStateToProps = state => ({
   modal: state.modals,

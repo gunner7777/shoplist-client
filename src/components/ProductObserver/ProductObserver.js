@@ -10,7 +10,6 @@ class ProductObserver extends Component {
   }
 
   render() {
-    console.log('render');
     const { productsIdInList, allProducts, getIdProduct } = this.props;
     const productsList = allProducts.map(item => {
       const checkBool = productsIdInList.indexOf(item._id) !== -1;
@@ -27,27 +26,15 @@ class ProductObserver extends Component {
     );
   }
 }
-/*
-const ProductObserver = ({ productsIdInList, allProducts, getIdProduct }) => {
-  const productsList = allProducts.map(item => {
-    const checkBool = productsIdInList.indexOf(item._id) !== -1;
-    return (
-      <Badge key={item._id} productId={item._id} getIdProduct={getIdProduct} Checked={checkBool}>
-        <Typography>{item.name}</Typography>
-      </Badge>
-    );
-  });
-  return (
-    <div>
-      <div>{productsList}</div>
-    </div>
-  );
-};
-*/
 
 ProductObserver.propTypes = {
-  productsIdInList: PropTypes.array,
-  allProducts: PropTypes.array,
+  productsIdInList: PropTypes.arrayOf(PropTypes.string),
+  allProducts: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string,
+      name: PropTypes.string,
+    }),
+  ),
   getIdProduct: PropTypes.func,
 };
 

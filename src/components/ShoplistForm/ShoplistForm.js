@@ -38,7 +38,7 @@ ShoplistForm.propTypes = {
   getShoplistName: PropTypes.func,
   saveShoplist: PropTypes.func,
   closeWindow: PropTypes.func,
-  inputRef: PropTypes.string,
+  inputRef: PropTypes.func,
   inputValue: PropTypes.string,
   show: PropTypes.bool,
 };

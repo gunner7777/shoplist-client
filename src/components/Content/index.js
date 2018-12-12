@@ -7,7 +7,7 @@ import './Content.scss';
 const Content = () => (
   <div className="Content">
     <Switch>
-      <Route exact path="/" />
+      <Route exact path="/" component={ManageShoplistContainer} />
       <Route exact path="/list" component={ManageShoplistContainer} />
       <Route exact path="/products" component={ManageProductsContainer} />
     </Switch>

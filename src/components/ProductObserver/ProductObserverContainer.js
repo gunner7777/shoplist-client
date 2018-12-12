@@ -37,6 +37,7 @@ class ProductObserverContainer extends Component {
   }
 
   render() {
+    console.log('dfdf', this.props.productsIdList);
     return (
       <ProductObserver
         productsIdInList={this.props.modalPurpose !== 'new' ? this.props.productsIdList : []}
@@ -47,10 +48,21 @@ class ProductObserverContainer extends Component {
   }
 }
 
-ProductObserverContainer.propTypes = {};
+ProductObserverContainer.propTypes = {
+  productsIdList: PropTypes.arrayOf(PropTypes.string),
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string,
+      name: PropTypes.string,
+    }),
+  ),
+  modalPurpose: PropTypes.string,
+  chosenProducts: PropTypes.arrayOf(PropTypes.string),
+  fetchData: PropTypes.func,
+  toggleProductInShoplist: PropTypes.func,
+};
 
 const mapStateToProps = state => ({
-  // productsIdList: state.shoplist.shoplist.products.map(item => item._id),
   productsIdList: productsIdListSelector(state),
   products: state.products.products,
   modalPurpose: state.modals.purpose,

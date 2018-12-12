@@ -9,8 +9,8 @@ const GroupButton = ({ productId, children }) => (
 );
 
 GroupButton.propTypes = {
-  children: PropTypes.node.isRequired,
-  productId: PropTypes.string.isRequired,
+  children: PropTypes.node,
+  productId: PropTypes.string,
 };
 
 export default GroupButton;

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   addProduct,
   clearCurrentProduct,
@@ -54,6 +55,22 @@ class ProductFormContainer extends PureComponent {
     );
   }
 }
+
+ProductFormContainer.propTypes = {
+  currProduct: PropTypes.shape({
+    _id: PropTypes.string,
+    name: PropTypes.string,
+  }),
+  modal: PropTypes.shape({
+    purpose: PropTypes.string,
+    isShowProductForm: PropTypes.bool,
+  }),
+  addProduct: PropTypes.func,
+  toggleProductWindow: PropTypes.func,
+  clearCurrentProduct: PropTypes.func,
+  updateProduct: PropTypes.func,
+  fetchData: PropTypes.func,
+};
 
 const mapStateToProps = state => ({
   currProduct: state.products.currentProduct,

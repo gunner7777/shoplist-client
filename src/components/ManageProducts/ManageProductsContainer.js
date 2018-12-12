@@ -38,7 +38,7 @@ class ManageProductsContainer extends Component {
 ManageProductsContainer.propTypes = {
   fetchData: PropTypes.func,
   toggleProductWindow: PropTypes.func,
-  productsInfo: PropTypes.objectOf({
+  productsInfo: PropTypes.shape({
     isLoading: PropTypes.bool,
     products: PropTypes.arrayOf(
       PropTypes.shape({

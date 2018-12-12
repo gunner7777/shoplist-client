@@ -23,7 +23,7 @@ const ProductForm = ({ show, closeWindow, inputRef, inputValue, saveProduct }) =
 ProductForm.propTypes = {
   show: PropTypes.bool,
   closeWindow: PropTypes.func,
-  inputRef: PropTypes.string,
+  inputRef: PropTypes.func,
   inputValue: PropTypes.string,
   saveProduct: PropTypes.func,
 };

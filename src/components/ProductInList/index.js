@@ -20,7 +20,7 @@ const ProductInList = ({ name, number }) => (
 
 ProductInList.propTypes = {
   name: PropTypes.string,
-  number: PropTypes.string,
+  number: PropTypes.number,
 };
 
 export default ProductInList;

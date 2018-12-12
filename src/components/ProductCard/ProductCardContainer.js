@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import { deleteProduct, getProduct } from '../../actions/productActions';
@@ -35,9 +36,11 @@ class ProductCardContainer extends Component {
   }
 }
 
-ProductCardContainer.propTypes = {};
-
-// const mapStateToProps = state => ({});
+ProductCardContainer.propTypes = {
+  deleteProduct: PropTypes.func,
+  getProduct: PropTypes.func,
+  toggleProductWindow: PropTypes.func,
+};
 
 const mapDispatchToProps = dispatch => ({
   deleteProduct: id => dispatch(deleteProduct(id)),
