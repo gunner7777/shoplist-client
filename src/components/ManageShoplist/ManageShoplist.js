@@ -10,7 +10,7 @@ import './ManageShoplist.scss';
 
 class ManageShoplist extends PureComponent {
   render() {
-    const { isLoading, shoplist, createList } = this.props;
+    const { isLoading, shoplist, createList, modal } = this.props;
     if (isLoading) {
       return <Loader />;
     }
@@ -25,16 +25,23 @@ class ManageShoplist extends PureComponent {
         </React.Fragment>
       );
 
-    const shopList = shoplist.products.map((item, index) => (
-      <ProductInList name={item.name} key={item._id} number={index + 1} />
-    ));
+    if (!modal.isShowShoplistForm) {
+      const shopList = shoplist.products.map((item, index) => (
+        <ProductInList name={item.name} key={item._id} number={index + 1} />
+      ));
+      return (
+        <div>
+          {createButton}
+          <ShoplistHeaderContainer nameList={shoplist.name} id={shoplist._id} />
+          {shopList}
+        </div>
+      );
+    }
     return (
-      <div>
+      <React.Fragment>
         {createButton}
-        <ShoplistHeaderContainer nameList={shoplist.name} id={shoplist._id} />
-        {shopList}
         <ShoplistFormContainer shoplistId={shoplist._id} />
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -31,7 +31,7 @@ class App extends PureComponent {
         <Content />
         <Footer />
         {showProductForm && <ProductFormContainer />}
-        {showShoplistForm && <ShoplistFormContainer />}
+        {/*showShoplistForm && <ShoplistFormContainer /> */}
       </div>
     );
   }

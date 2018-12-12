@@ -21,8 +21,15 @@ class ManageShoplistContainer extends Component {
 
   render() {
     const { isLoading, shoplist } = this.props.shoplist;
+    // console.log('11111111', this.props);
+    // const { isShowShoplistForm, purpose } = this.props.modal;
     return (
-      <ManageShoplist shoplist={shoplist} isLoading={isLoading} createList={this.newShoplist} />
+      <ManageShoplist
+        shoplist={shoplist}
+        isLoading={isLoading}
+        createList={this.newShoplist}
+        modal={this.props.modal}
+      />
     );
   }
 }
@@ -45,7 +52,10 @@ ManageShoplistContainer.propTypes = {
   toggleShoplistWindow: PropTypes.func,
 };
 
-const mapStateToProps = state => ({ shoplist: state.shoplist });
+const mapStateToProps = state => ({
+  shoplist: state.shoplist,
+  modal: state.modals,
+});
 
 const mapDispatchToProps = dispatch => ({
   getShoplist: () => dispatch(getShoplist()),

@@ -15,22 +15,24 @@ const ShoplistForm = ({
   closeWindow,
   show,
 }) => (
-  <div className="ShoplistForm">
-    <div className="ShoplistForm-Close text-right">
-      <CloseButton closeForm={closeWindow} />
-    </div>
-    <Typography variant="title" tag="h3" modClass="text-center">
-      Shoplist
-    </Typography>
-    <div>
-      <Input
-        getShoplistName={getShoplistName}
-        label="Shoplist Name"
-        ref={inputRef}
-        currValue={inputValue}
-      />
-      <ProductObserverContainer getCheckedId={getCheckedId} />
-      <SaveButton saveItem={saveShoplist} mod="Button_Center" />
+  <div className={`ShoplistForm-Outer ${show ? 'ShoplistForm_Show' : 'ShoplistForm_Hide'}`}>
+    <div className="ShoplistForm">
+      <div className="ShoplistForm-Close text-right">
+        <CloseButton closeForm={closeWindow} />
+      </div>
+      <Typography variant="title" tag="h3" modClass="text-center">
+        Shoplist
+      </Typography>
+      <div>
+        <Input
+          getShoplistName={getShoplistName}
+          label="Shoplist Name"
+          ref={inputRef}
+          currValue={inputValue}
+        />
+        <ProductObserverContainer getCheckedId={getCheckedId} />
+        <SaveButton saveItem={saveShoplist} mod="Button_Center" />
+      </div>
     </div>
   </div>
 );
