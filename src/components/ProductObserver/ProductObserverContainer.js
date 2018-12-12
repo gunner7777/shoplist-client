@@ -37,7 +37,6 @@ class ProductObserverContainer extends Component {
   }
 
   render() {
-    console.log('dfdf', this.props.productsIdList);
     return (
       <ProductObserver
         productsIdInList={this.props.modalPurpose !== 'new' ? this.props.productsIdList : []}

@@ -22,7 +22,6 @@ class ShoplistHeaderContainer extends PureComponent {
   }
 
   render() {
-    const { nameList, id } = this.props;
     return (
       <ShoplistHeader
         updateForm={this.updateShoplist}

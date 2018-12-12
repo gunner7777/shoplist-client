@@ -2,11 +2,13 @@
   margin: 15px 0;
 
   &-Input {
-    width: 80%;
+    width: 100%;
     padding: 4px;
+    height: 44px;
   }
 
   &-Label {
-
+    display: block;
+    margin-bottom: 4px;
   }
 }
