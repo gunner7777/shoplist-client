@@ -12,6 +12,11 @@ class ProductObserverContainer extends Component {
     this.getId = this.getId.bind(this);
   }
 
+  shouldComponentUpdate(nextProps) {
+    if(this.props.products === nextProps.products) return false;
+    return true;
+  }
+
   componentDidMount() {
     if (this.props.products.length === 0) this.props.fetchData();
     this.props.toggleProductInShoplist(
