@@ -37,6 +37,7 @@ class ProductObserverContainer extends Component {
   }
 
   render() {
+    console.log('render observer');
     return (
       <ProductObserver
         productsIdInList={this.props.modalPurpose !== 'new' ? this.props.productsIdList : []}

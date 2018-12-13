@@ -13,7 +13,7 @@ const ShoplistForm = ({
   inputValue,
   saveShoplist,
   closeWindow,
-  show,
+  // show,
 }) => (
   <div className="ShoplistForm">
     <div className="ShoplistForm-Close text-right">
@@ -42,7 +42,7 @@ ShoplistForm.propTypes = {
   closeWindow: PropTypes.func,
   inputRef: PropTypes.func,
   inputValue: PropTypes.string,
-  show: PropTypes.bool,
+  // show: PropTypes.bool,
 };
 
 export default ShoplistForm;

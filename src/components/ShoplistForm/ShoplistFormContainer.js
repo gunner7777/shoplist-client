@@ -39,11 +39,12 @@ class ShoplistFormContainer extends PureComponent {
       <div>
         <ShoplistForm
           closeWindow={this.closeWindow}
-          getCheckedId={this.getCheckedId}
+          // getCheckedId={this.getCheckedId}
+          getCheckedId={this.props.shoplistId}
           saveShoplist={this.saveShoplist}
           inputRef={el => (this.inputName = el)}
           inputValue={this.props.modal.purpose === 'new' ? '' : this.props.productName}
-          show={this.props.modal.isShowShoplistForm}
+          // show={this.props.modal.isShowShoplistForm}
         />
       </div>
     );
