@@ -36,7 +36,7 @@ const ShoplistForm = ({
 );
 
 ShoplistForm.propTypes = {
-  getCheckedId: PropTypes.func,
+  getCheckedId: PropTypes.string,
   getShoplistName: PropTypes.func,
   saveShoplist: PropTypes.func,
   closeWindow: PropTypes.func,

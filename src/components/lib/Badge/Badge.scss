@@ -1,10 +1,12 @@
+@import '../../../style/colors.scss';
+
 .Badge {
   cursor: pointer;
   padding: 10px;
   margin: 3px 0;
 
   &_Checked {
-    background-color: #000;
-    color: #ffffff;
+    background-color: $blue;
+    color: $white;
   }
 }

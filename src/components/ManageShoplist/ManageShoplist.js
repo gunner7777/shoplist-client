@@ -17,26 +17,30 @@ class ManageShoplist extends PureComponent {
 
     const createButton = <CreateButton createItem={createList} mod="Button_FixedToBottom" />;
 
-    if (JSON.stringify(shoplist) === '{}')
-      return (
-        <React.Fragment>
-          {createButton}
-          <Typography>Fresh shoplist not found</Typography>
-        </React.Fragment>
-      );
-
+    let content;
     if (!modal.isShowShoplistForm) {
-      const shopList = shoplist.products.map((item, index) => (
-        <ProductInList name={item.name} key={item._id} number={index + 1} />
-      ));
+      if (JSON.stringify(shoplist) !== '{}') {
+        const shopList = shoplist.products.map((item, index) => (
+          <ProductInList name={item.name} key={item._id} number={index + 1} />
+        ));
+        content = (
+          <React.Fragment>
+            <ShoplistHeaderContainer nameList={shoplist.name} id={shoplist._id} />
+            {shopList}
+          </React.Fragment>
+        );
+      } else {
+        content = <Typography>Fresh shoplist not found</Typography>;
+      }
+
       return (
         <div>
           {createButton}
-          <ShoplistHeaderContainer nameList={shoplist.name} id={shoplist._id} />
-          {shopList}
+          {content}
         </div>
       );
     }
+
     return (
       <React.Fragment>
         {createButton}
@@ -59,6 +63,9 @@ ManageShoplist.propTypes = {
     _id: PropTypes.string,
   }),
   createList: PropTypes.func,
+  modal: PropTypes.shape({
+    isShowShoplistForm: PropTypes.bool,
+  }),
 };
 
 export default ManageShoplist;

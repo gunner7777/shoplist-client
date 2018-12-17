@@ -21,8 +21,7 @@ class ManageShoplistContainer extends Component {
 
   render() {
     const { isLoading, shoplist } = this.props.shoplist;
-    // console.log('11111111', this.props);
-    // const { isShowShoplistForm, purpose } = this.props.modal;
+
     return (
       <ManageShoplist
         shoplist={shoplist}
@@ -47,6 +46,10 @@ ManageShoplistContainer.propTypes = {
         }),
       ),
     }),
+  }),
+  modal: PropTypes.shape({
+    isShowShoplistForm: PropTypes.bool,
+    purpose: PropTypes.string,
   }),
   getShoplist: PropTypes.func,
   toggleShoplistWindow: PropTypes.func,

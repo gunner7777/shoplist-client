@@ -1,4 +1,5 @@
 @import '../../../style/colors.scss';
+
 .Button {
   border-radius: 3px;
   border: none;
@@ -27,7 +28,7 @@
 
   &_FixedToBottom {
     position: fixed;
-    bottom: 20px;
+    bottom: 40px;
   }
 
   &-Icon {
@@ -35,11 +36,11 @@
   }
 
   &-Save {
-    background-color: $dark_blue;
+    background-color: $deep_blue;
   }
 
   &-Edit {
-    background-color: $yellow;
+    background-color: $brown;
   }
   &-Delete {
     background-color: $red;
@@ -52,7 +53,7 @@
   }
 
   &-Create {
-    background-color: rgb(79, 117, 115);
+    background-color: $grey;
   }
 
   &-Text {
