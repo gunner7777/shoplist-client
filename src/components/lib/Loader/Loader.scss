@@ -1,8 +1,8 @@
-@import "../../../styles/colors";
+@import '../../../style/colors.scss';
 
 .Loader {
   font-size: 45px;
-  color: $dark_green;
+  color: $deep_blue;
   height: 30px;
   width: 30px;
   animation: spinner 1s linear infinite;

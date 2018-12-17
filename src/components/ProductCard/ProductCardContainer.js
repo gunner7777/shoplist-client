@@ -13,13 +13,6 @@ class ProductCardContainer extends Component {
     this.showForm = this.showForm.bind(this);
   }
 
-  // render if true, if === return false
-
-  /* shouldComponentUpdate(nextProps) {
-    if (nextProps.name === this.props.name) return false;
-    return true;
-  } */
-
   deleteClick(e) {
     this.props.deleteProduct(e.currentTarget.parentNode.dataset.productid);
   }

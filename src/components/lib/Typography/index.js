@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Typography.css';
-import './Typography.media.css';
+import './Typography.scss';
+import './Typography.media.scss';
 
 /*
 props

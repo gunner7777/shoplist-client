@@ -81,13 +81,10 @@ export const deleteShoplist = id => dispatch => {
     });
 };
 
-export const toggleProductInShoplist = chosenProducts => {
-  console.log('toggle product');
-  return {
+export const toggleProductInShoplist = chosenProducts => ({
     type: TOGGLE_PRODUCT_IN_SHOPLIST,
     chosenProducts,
-  };
-};
+  });
 
 export const cleanChosenProducts = () => ({
   type: CLEAN_CHOOSEN_PRODUCTS_IN_SHOPLIST,

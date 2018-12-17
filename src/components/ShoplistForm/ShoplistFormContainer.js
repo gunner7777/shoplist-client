@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { addShoplist, updateShoplist, cleanChosenProducts } from '../../actions/shoplistActions';
 import { toggleShoplistWindow } from '../../actions/modalsActions';
 import ShoplistForm from './ShoplistForm';
@@ -39,19 +38,28 @@ class ShoplistFormContainer extends PureComponent {
       <div>
         <ShoplistForm
           closeWindow={this.closeWindow}
-          // getCheckedId={this.getCheckedId}
           getCheckedId={this.props.shoplistId}
           saveShoplist={this.saveShoplist}
           inputRef={el => (this.inputName = el)}
           inputValue={this.props.modal.purpose === 'new' ? '' : this.props.productName}
-          // show={this.props.modal.isShowShoplistForm}
         />
       </div>
     );
   }
 }
 
-ShoplistFormContainer.propTypes = {};
+ShoplistFormContainer.propTypes = {
+  modal: PropTypes.shape({
+    purpose: PropTypes.string,
+  }),
+  productName: PropTypes.string,
+  shoplistId: PropTypes.string,
+  chosenProducts: PropTypes.arrayOf(PropTypes.string),
+  addShoplist: PropTypes.func,
+  updateShoplist: PropTypes.func,
+  toggleShoplistWindow: PropTypes.func,
+  cleanChosenProducts: PropTypes.func,
+};
 
 const mapStateToProps = state => ({
   modal: state.modals,

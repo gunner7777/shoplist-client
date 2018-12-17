@@ -3,33 +3,10 @@
   position: relative;
   width: 300px;
   margin: 0 auto;
-  /*background-color: #fff;
-  
-  top: 50%;
-  transform: translateY(-50%);
-
-  &-Outer {
-    position: fixed;
-    background-color: rgba(0, 0, 0, .3);
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    overflow-y: auto;
-  }*/
 
   &-Close {
     position: absolute;
     right: 0;
     top: 0;
   }
-
-  /*
-  &_Show {
-    display: block;
-  }
-
-  &_Hide {
-    display: none;
-  }*/
 }

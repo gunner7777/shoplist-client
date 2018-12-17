@@ -13,7 +13,7 @@ class ProductObserverContainer extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    if(this.props.products === nextProps.products) return false;
+    if (this.props.products === nextProps.products) return false;
     return true;
   }
 
@@ -42,7 +42,6 @@ class ProductObserverContainer extends Component {
   }
 
   render() {
-    console.log('render observer');
     return (
       <ProductObserver
         productsIdInList={this.props.modalPurpose !== 'new' ? this.props.productsIdList : []}

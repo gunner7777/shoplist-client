@@ -12,7 +12,11 @@ class ManageShoplist extends PureComponent {
   render() {
     const { isLoading, shoplist, createList, modal } = this.props;
     if (isLoading) {
-      return <Loader />;
+      return (
+        <div className="text-center">
+          <Loader />
+        </div>
+      );
     }
 
     const createButton = <CreateButton createItem={createList} mod="Button_FixedToBottom" />;
@@ -34,10 +38,10 @@ class ManageShoplist extends PureComponent {
       }
 
       return (
-        <div>
+        <React.Fragment>
           {createButton}
-          {content}
-        </div>
+          <div className="text-center">{content}</div>
+        </React.Fragment>
       );
     }
 

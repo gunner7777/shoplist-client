@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './Loader.css';
+import './Loader.scss';
 
 const Loader = () => (
   <div className="Loader-Outer Text_Center">

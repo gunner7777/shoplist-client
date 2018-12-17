@@ -21,7 +21,6 @@ export const getProductsSuccess = products => ({
 });
 
 export const getProducts = () => dispatch => {
-  console.log('get products');
   dispatch(isLoading(true));
   axios
     .get(`${API.url}products`)

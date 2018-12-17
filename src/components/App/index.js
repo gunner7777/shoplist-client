@@ -17,21 +17,19 @@ import Header from '../Header';
 import Footer from '../Footer';
 import Content from '../Content';
 import ProductFormContainer from '../ProductForm/ProductFormContainer';
-import ShoplistFormContainer from '../ShoplistForm/ShoplistFormContainer';
 import './App.scss';
 
 library.add([faPlus, faMinus, faSave, faEdit, faAngleLeft, faTimes, faFileAlt, faSpinner]);
 
 class App extends PureComponent {
   render() {
-    const { showProductForm, showShoplistForm } = this.props;
+    const { showProductForm } = this.props;
     return (
       <div className="App">
         <Header />
         <Content />
         <Footer />
         {showProductForm && <ProductFormContainer />}
-        {/*showShoplistForm && <ShoplistFormContainer /> */}
       </div>
     );
   }
@@ -39,12 +37,10 @@ class App extends PureComponent {
 
 App.propTypes = {
   showProductForm: PropTypes.bool,
-  showShoplistForm: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({
   showProductForm: state.modals.isShowProductForm,
-  showShoplistForm: state.modals.isShowShoplistForm,
 });
 
 export default withRouter(connect(mapStateToProps)(App));
