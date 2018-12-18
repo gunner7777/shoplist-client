@@ -1,6 +1,6 @@
 import { TOGGLE_PRODUCT_WINDOW, TOGGLE_SHOPLIST_WINDOW } from '../constants/actionTypes';
 
-const initialState = {
+export const initialState = {
   isShowProductForm: false,
   isShowShoplistForm: false,
   purpose: '',

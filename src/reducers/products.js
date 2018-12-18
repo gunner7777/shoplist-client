@@ -8,7 +8,7 @@ import {
   PRODUCT_IS_LOADING,
 } from '../constants/actionTypes';
 
-const initialState = {
+export const initialState = {
   products: [],
   currentProduct: {},
   isLoading: true,

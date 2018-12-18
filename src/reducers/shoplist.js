@@ -8,7 +8,7 @@ import {
   CLEAN_CHOOSEN_PRODUCTS_IN_SHOPLIST,
 } from '../constants/actionTypes';
 
-const initialState = {
+export const initialState = {
   shoplist: {},
   chosenProducts: [],
   isLoading: true,
