@@ -29,5 +29,49 @@ describe('product actions test', () => {
 
       expect(a.getProductsSuccess(['1', '2'])).toEqual(expectedActions);
     });
+
+    it('deleteProductSuccess() - delete product', () => {
+      const expectedActions = {
+        type: DELETE_PRODUCT,
+        id: "1",
+      };
+
+      expect(a.deleteProductSuccess('1')).toEqual(expectedActions);
+    });
+
+    it('addProductSuccess() - add product', () => {
+      const expectedActions = {
+        type: SAVE_PRODUCT,
+        data: "1",
+      };
+
+      expect(a.addProductSuccess('1')).toEqual(expectedActions);
+    });
+
+    it('getProductSuccess() - get product', () => {
+      const expectedActions = {
+        type: GET_PRODUCT,
+        data: "1",
+      };
+
+      expect(a.getProductSuccess('1')).toEqual(expectedActions);
+    });
+
+    it('updateProductSuccess() - update product', () => {
+      const expectedActions = {
+        type: UPDATE_PRODUCT,
+        data: "2",
+      };
+
+      expect(a.updateProductSuccess('2')).toEqual(expectedActions);
+    });
+
+    it('clearCurrentProduct() - clear current product', () => {
+      const expectedActions = {
+        type: CLEAR_CURRENT_PRODUCT,
+      };
+
+      expect(a.clearCurrentProduct()).toEqual(expectedActions);
+    });
   });
 });
