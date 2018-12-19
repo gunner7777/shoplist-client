@@ -7,7 +7,7 @@ describe('modals reducer', () => {
       purpose: '',
       isShowProductForm: false,
     };
-    
+
     const action = {
       type: TOGGLE_PRODUCT_WINDOW,
       purpose: 'new',
