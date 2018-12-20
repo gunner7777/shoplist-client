@@ -1,4 +1,7 @@
-import * as a from './productActions';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import fetchMock from 'fetch-mock';
+// import axios from 'axios';
 import {
   GET_ALL_PRODUCTS,
   DELETE_PRODUCT,
@@ -8,6 +11,7 @@ import {
   CLEAR_CURRENT_PRODUCT,
   PRODUCT_IS_LOADING,
 } from '../constants/actionTypes';
+import * as a from './productActions';
 import { API } from '../constants/constants';
 
 describe('product actions test', () => {
@@ -33,7 +37,7 @@ describe('product actions test', () => {
     it('deleteProductSuccess() - delete product', () => {
       const expectedActions = {
         type: DELETE_PRODUCT,
-        id: "1",
+        id: '1',
       };
 
       expect(a.deleteProductSuccess('1')).toEqual(expectedActions);
@@ -42,7 +46,7 @@ describe('product actions test', () => {
     it('addProductSuccess() - add product', () => {
       const expectedActions = {
         type: SAVE_PRODUCT,
-        data: "1",
+        data: '1',
       };
 
       expect(a.addProductSuccess('1')).toEqual(expectedActions);
@@ -51,7 +55,7 @@ describe('product actions test', () => {
     it('getProductSuccess() - get product', () => {
       const expectedActions = {
         type: GET_PRODUCT,
-        data: "1",
+        data: '1',
       };
 
       expect(a.getProductSuccess('1')).toEqual(expectedActions);
@@ -60,7 +64,7 @@ describe('product actions test', () => {
     it('updateProductSuccess() - update product', () => {
       const expectedActions = {
         type: UPDATE_PRODUCT,
-        data: "2",
+        data: '2',
       };
 
       expect(a.updateProductSuccess('2')).toEqual(expectedActions);
@@ -72,6 +76,16 @@ describe('product actions test', () => {
       };
 
       expect(a.clearCurrentProduct()).toEqual(expectedActions);
+    });
+  });
+
+  describe('async actions', () => {
+    const middlewares = [thunk];
+    const mockStore = configureMockStore(middlewares);
+
+    afterEach(() => {
+      fetchMock.reset();
+      fetchMock.restore();
     });
   });
 });
