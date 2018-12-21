@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getCiphers } from 'tls';
 import {
   GET_ALL_PRODUCTS,
   DELETE_PRODUCT,
@@ -20,7 +21,7 @@ export const getProductsSuccess = products => ({
   products,
 });
 
-export const getProducts = () => dispatch => {
+/* export const getProducts = () => dispatch => {
   dispatch(isLoading(true));
   axios
     .get(`${API.url}products`)
@@ -31,6 +32,18 @@ export const getProducts = () => dispatch => {
     .catch(error => {
       console.error('Error', error);
     });
+ }; */
+
+export const getProducts = () => dispatch => {
+  dispatch(isLoading(true));
+  return fetch(`${API.url}products`)
+    .then(res => res.json())
+    .then(res => {
+      // console.log('res', res);
+      dispatch(getProductsSuccess(res));
+      dispatch(isLoading(false));
+    })
+    .catch(error => console.error('Error', error));
 };
 
 export const deleteProductSuccess = id => ({
@@ -38,7 +51,7 @@ export const deleteProductSuccess = id => ({
   id,
 });
 
-export const deleteProduct = id => dispatch => {
+/* export const deleteProduct = id => dispatch => {
   axios
     .delete(`${API.url}products/delete/${id}`)
     .then(response => {
@@ -47,14 +60,22 @@ export const deleteProduct = id => dispatch => {
     .catch(error => {
       console.error('Error', error);
     });
-};
+}; */
+
+export const deleteProduct = id => dispatch =>
+  fetch(`${API.url}products/delete/${id}`, {
+    method: 'DELETE',
+  })
+    .then(res => res.json())
+    .then(res => dispatch(deleteProductSuccess(id)))
+    .catch(error => console.error('Error', error));
 
 export const addProductSuccess = data => ({
   type: SAVE_PRODUCT,
   data,
 });
 
-export const addProduct = data => dispatch => {
+/* export const addProduct = data => dispatch => {
   axios
     .post(`${API.url}products/new`, data)
     .then(response => {
@@ -63,7 +84,16 @@ export const addProduct = data => dispatch => {
     .catch(error => {
       console.error('Error', error);
     });
-};
+}; */
+
+export const addProduct = data => dispatch => fetch(`${API.url}products/new`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(data),
+  })
+    .then(res => res.json())
+    .then(res => dispatch(addProductSuccess(res)))
+    .catch(error => console.error('Error', error));
 
 export const getProductSuccess = data => ({
   type: GET_PRODUCT,

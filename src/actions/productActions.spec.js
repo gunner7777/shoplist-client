@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
-// import axios from 'axios';
+import axios from 'axios';
 import {
   GET_ALL_PRODUCTS,
   DELETE_PRODUCT,
@@ -13,6 +13,9 @@ import {
 } from '../constants/actionTypes';
 import * as a from './productActions';
 import { API } from '../constants/constants';
+
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 
 describe('product actions test', () => {
   describe('sync actions', () => {
@@ -80,11 +83,51 @@ describe('product actions test', () => {
   });
 
   describe('async actions', () => {
-    const middlewares = [thunk];
-    const mockStore = configureMockStore(middlewares);
-
     afterEach(() => {
-      fetchMock.reset();
+      // fetchMock.reset();
+      fetchMock.restore();
+    });
+
+    it('getProducts', () => {
+      fetchMock.getOnce(`${API.url}products`, {
+        headers: { 'content-type': 'application/json' },
+        body: { data: [{ name: '1' }] },
+      });
+
+      const expectedActions = [
+        { type: PRODUCT_IS_LOADING, bool: true },
+        { type: GET_ALL_PRODUCTS, products: { data: [{ name: '1' }] } },
+        { type: PRODUCT_IS_LOADING, bool: false },
+      ];
+
+      const store = mockStore({ products: [] });
+
+      return store.dispatch(a.getProducts()).then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+    });
+
+    it('deleteProduct', () => {
+      fetchMock.deleteOnce(`${API.url}products/delete/:id`, {
+        // headers: { 'content-type': 'application/json' },
+        body: { id: '1' },
+        status: 200,
+      });
+      // assert(res.ok);
+
+      // .catch(error => console.log(error));
+
+      const expectedActions = [
+        // { type: PRODUCT_IS_LOADING, bool: true },
+        { type: DELETE_PRODUCT, id: '1' },
+        // { type: PRODUCT_IS_LOADING, bool: false },
+      ];
+
+      const store = mockStore({ id: '1' });
+
+      return store.dispatch(a.deleteProduct('1'), () => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
       fetchMock.restore();
     });
   });
