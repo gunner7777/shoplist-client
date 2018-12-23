@@ -62,13 +62,24 @@ export const deleteProductSuccess = id => ({
     });
 }; */
 
-export const deleteProduct = id => dispatch =>
-  fetch(`${API.url}products/delete/${id}`, {
+export const deleteProduct = id => async dispatch => {
+  let response = await fetch(`${API.url}products/delete/${id}`, {
     method: 'DELETE',
-  })
-    .then(res => res.json())
-    .then(res => dispatch(deleteProductSuccess(id)))
-    .catch(error => console.error('Error', error));
+  });
+  if(response.status == 200) {
+    let data = await response.json();
+    return dispatch(deleteProductSuccess(id));
+    console.log(data);
+  }
+
+  throw new Error(response.status);
+
+
+    //.then(res => res.json())
+    /*.then(() => dispatch(deleteProductSuccess(id)))
+    .catch(error =>  console.error('Error', error)
+    );*/
+}
 
 export const addProductSuccess = data => ({
   type: SAVE_PRODUCT,

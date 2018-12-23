@@ -108,7 +108,7 @@ describe('product actions test', () => {
     });
 
     it('deleteProduct', () => {
-      fetchMock.deleteOnce(`${API.url}products/delete/:id`, {
+      fetchMock.deleteOnce(`${API.url}products/delete/1`, {
         // headers: { 'content-type': 'application/json' },
         body: { id: '1' },
         status: 200,
@@ -123,7 +123,7 @@ describe('product actions test', () => {
         // { type: PRODUCT_IS_LOADING, bool: false },
       ];
 
-      const store = mockStore({ id: '1' });
+      const store = mockStore();
 
       return store.dispatch(a.deleteProduct('1'), () => {
         expect(store.getActions()).toEqual(expectedActions);
