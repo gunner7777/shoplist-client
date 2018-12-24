@@ -44,6 +44,7 @@
     "fetch-mock": "^7.2.7",
     "moxios": "^0.4.0",
     "node-fetch": "^2.3.0",
+    "path-to-regexp": "^2.4.0",
     "prettier": "^1.14.3",
     "redux-mock-store": "^1.5.3"
   }

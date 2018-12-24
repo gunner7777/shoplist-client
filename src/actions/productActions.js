@@ -62,24 +62,19 @@ export const deleteProductSuccess = id => ({
     });
 }; */
 
-export const deleteProduct = id => async dispatch => {
-  let response = await fetch(`${API.url}products/delete/${id}`, {
+export const deleteProduct = id => dispatch =>
+  fetch(`${API.url}products/delete/${id}`, {
     method: 'DELETE',
-  });
-  if(response.status == 200) {
-    let data = await response.json();
-    return dispatch(deleteProductSuccess(id));
-    console.log(data);
-  }
-
-  throw new Error(response.status);
-
-
-    //.then(res => res.json())
-    /*.then(() => dispatch(deleteProductSuccess(id)))
-    .catch(error =>  console.error('Error', error)
-    );*/
-}
+    headers: { 'content-type': 'application/json' },
+  })
+    .then(response => {
+      if (response.status === 200) return response.json();
+      throw new Error('404');
+    })
+    .then(response => {
+      dispatch(deleteProductSuccess(response.id));
+    })
+    .catch(error => console.error('Error', error));
 
 export const addProductSuccess = data => ({
   type: SAVE_PRODUCT,
@@ -97,13 +92,17 @@ export const addProductSuccess = data => ({
     });
 }; */
 
-export const addProduct = data => dispatch => fetch(`${API.url}products/new`, {
+export const addProduct = data => dispatch =>
+  fetch(`${API.url}products/new`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify(data),
   })
     .then(res => res.json())
-    .then(res => dispatch(addProductSuccess(res)))
+    .then(res => {
+      // console.log('res', res);
+      dispatch(addProductSuccess(res));
+    })
     .catch(error => console.error('Error', error));
 
 export const getProductSuccess = data => ({
@@ -111,7 +110,7 @@ export const getProductSuccess = data => ({
   data,
 });
 
-export const getProduct = id => dispatch => {
+/* export const getProduct = id => dispatch => {
   axios
     .get(`${API.url}products/${id}`)
     .then(response => {
@@ -120,6 +119,19 @@ export const getProduct = id => dispatch => {
     .catch(error => {
       console.error('Error', error);
     });
+}; */
+
+export const getProduct = id => async dispatch => {
+  try {
+    const response = await fetch(`${API.url}products/${id}`, {
+      method: 'GET',
+      headers: { 'content-type': 'application/json' },
+    });
+    const data = await response.json();
+    dispatch(getProductSuccess(data));
+  } catch (error) {
+    console.error('Error', error);
+  }
 };
 
 export const updateProductSuccess = data => ({

@@ -108,27 +108,81 @@ describe('product actions test', () => {
     });
 
     it('deleteProduct', () => {
-      fetchMock.deleteOnce(`${API.url}products/delete/1`, {
-        // headers: { 'content-type': 'application/json' },
-        body: { id: '1' },
-        status: 200,
-      });
-      // assert(res.ok);
+      const id = '1';
+      fetchMock
+        .mock(
+          `${API.url}products/delete/${id}`,
+          { id: '1' },
+          {
+            method: 'delete',
+            // headers: { 'content-type': 'application/json' },
+            // params: { id: 1 },
+          },
+        )
+        .catch();
 
-      // .catch(error => console.log(error));
+      const expectedActions = [{ type: DELETE_PRODUCT, id: '1' }];
 
-      const expectedActions = [
-        // { type: PRODUCT_IS_LOADING, bool: true },
-        { type: DELETE_PRODUCT, id: '1' },
-        // { type: PRODUCT_IS_LOADING, bool: false },
-      ];
+      const store = mockStore({});
 
-      const store = mockStore();
-
-      return store.dispatch(a.deleteProduct('1'), () => {
+      return store.dispatch(a.deleteProduct('1')).then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
-      fetchMock.restore();
     });
+
+    it('addProduct', () => {
+      fetchMock.mock(
+        `${API.url}products/new`,
+        {
+          id: '2',
+          name: '333',
+        },
+        {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+        },
+      );
+
+      const expectedActions = [
+        {
+          type: SAVE_PRODUCT,
+          data: {
+            id: '2',
+            name: '333',
+          },
+        },
+      ];
+
+      const store = mockStore({});
+
+      return store.dispatch(a.addProduct()).then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+    });
+
+    /* it('get single product', () => {
+      fetchMock
+        .mock(
+          `express:${API.url}products/:id`,
+          {
+            status: 200,
+            data: { id: '1', name: '222' },
+          },
+          {
+            method: 'GET',
+            // params: { id: '1' },
+            // headers: { 'content-type': 'application/json' },
+          },
+        )
+        .catch();
+
+      const expectedActions = [{ type: GET_PRODUCT, data: { id: '1', name: '222' } }];
+
+      const store = mockStore({});
+
+      return store.dispatch(a.getProduct({ name: '2' })).then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+    }); */
   });
 });
