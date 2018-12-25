@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { getCiphers } from 'tls';
+// import axios from 'axios';
+// import { getCiphers } from 'tls';
 import {
   GET_ALL_PRODUCTS,
   DELETE_PRODUCT,
@@ -39,7 +39,6 @@ export const getProducts = () => dispatch => {
   return fetch(`${API.url}products`)
     .then(res => res.json())
     .then(res => {
-      // console.log('res', res);
       dispatch(getProductsSuccess(res));
       dispatch(isLoading(false));
     })
@@ -100,7 +99,6 @@ export const addProduct = data => dispatch =>
   })
     .then(res => res.json())
     .then(res => {
-      // console.log('res', res);
       dispatch(addProductSuccess(res));
     })
     .catch(error => console.error('Error', error));
@@ -139,7 +137,7 @@ export const updateProductSuccess = data => ({
   data,
 });
 
-export const updateProduct = data => dispatch => {
+/* export const updateProduct = data => dispatch => {
   axios
     .patch(`${API.url}products/edit/${data.id}`, data)
     .then(response => {
@@ -148,6 +146,20 @@ export const updateProduct = data => dispatch => {
     .catch(error => {
       console.error('Error', error);
     });
+}; */
+
+export const updateProduct = data => async dispatch => {
+  try {
+    const response = await fetch(`${API.url}products/edit/${data.id}`, {
+      method: 'PATCH',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    const result = await response.json();
+    dispatch(updateProductSuccess(result));
+  } catch (error) {
+    console.error('Error', error);
+  }
 };
 
 export const clearCurrentProduct = () => ({

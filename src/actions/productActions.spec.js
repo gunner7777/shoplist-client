@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
-import axios from 'axios';
+// import axios from 'axios';
 import {
   GET_ALL_PRODUCTS,
   DELETE_PRODUCT,
@@ -114,7 +114,7 @@ describe('product actions test', () => {
           `${API.url}products/delete/${id}`,
           { id: '1' },
           {
-            method: 'delete',
+            method: 'DELETE',
             // headers: { 'content-type': 'application/json' },
             // params: { id: 1 },
           },
@@ -125,7 +125,7 @@ describe('product actions test', () => {
 
       const store = mockStore({});
 
-      return store.dispatch(a.deleteProduct('1')).then(() => {
+      return store.dispatch(a.deleteProduct(id)).then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
     });
@@ -160,18 +160,15 @@ describe('product actions test', () => {
       });
     });
 
-    /* it('get single product', () => {
+    it('get single product', () => {
+      const id = '1';
       fetchMock
         .mock(
-          `express:${API.url}products/:id`,
-          {
-            status: 200,
-            data: { id: '1', name: '222' },
-          },
+          `${API.url}products/${id}`,
+          { id: '1', name: '222' },
           {
             method: 'GET',
-            // params: { id: '1' },
-            // headers: { 'content-type': 'application/json' },
+            headers: { 'content-type': 'application/json' },
           },
         )
         .catch();
@@ -180,9 +177,31 @@ describe('product actions test', () => {
 
       const store = mockStore({});
 
-      return store.dispatch(a.getProduct({ name: '2' })).then(() => {
+      return store.dispatch(a.getProduct(id)).then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
-    }); */
+    });
+
+    it('updateProduct', () => {
+      const dataReceived = {
+        id: '1',
+        name: '33',
+      };
+
+      fetchMock
+        .mock(`${API.url}products/edit/${dataReceived.id}`, dataReceived, {
+          method: 'PATCH',
+          headers: { 'content-type': 'application/json' },
+        })
+        .catch();
+
+      const expectedActions = [{ type: UPDATE_PRODUCT, data: { id: '1', name: '33' } }];
+
+      const store = mockStore({});
+
+      return store.dispatch(a.updateProduct(dataReceived)).then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+    });
   });
 });

@@ -1,3 +1,6 @@
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import fetchMock from 'fetch-mock';
 import * as a from './shoplistActions';
 import {
   ADD_SHOPLIST,
@@ -9,6 +12,9 @@ import {
   CLEAN_CHOOSEN_PRODUCTS_IN_SHOPLIST,
 } from '../constants/actionTypes';
 import { API } from '../constants/constants';
+
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 
 describe('product actions test', () => {
   describe('sync actions', () => {
@@ -24,28 +30,28 @@ describe('product actions test', () => {
     it('getShoplistSuccess() - toggle loader', () => {
       const expectedActions = {
         type: GET_SHOPLIST,
-        data: {name: '1'},
+        data: { name: '1' },
       };
 
-      expect(a.getShoplistSuccess({name: '1'})).toEqual(expectedActions);
+      expect(a.getShoplistSuccess({ name: '1' })).toEqual(expectedActions);
     });
 
     it('addShoplistSuccess() - toggle loader', () => {
       const expectedActions = {
         type: ADD_SHOPLIST,
-        data: {name: '1'},
+        data: { name: '1' },
       };
 
-      expect(a.addShoplistSuccess({name: '1'})).toEqual(expectedActions);
+      expect(a.addShoplistSuccess({ name: '1' })).toEqual(expectedActions);
     });
 
     it('updateShoplistSuccess() - toggle loader', () => {
       const expectedActions = {
         type: UPDATE_SHOPLIST,
-        data: {name: '2'},
+        data: { name: '2' },
       };
 
-      expect(a.updateShoplistSuccess({name: '2'})).toEqual(expectedActions);
+      expect(a.updateShoplistSuccess({ name: '2' })).toEqual(expectedActions);
     });
 
     it('deleteShoplistSuccess() - toggle loader', () => {
@@ -72,6 +78,96 @@ describe('product actions test', () => {
       };
 
       expect(a.cleanChosenProducts()).toEqual(expectedActions);
+    });
+  });
+
+  describe('async actions', () => {
+    afterEach(() => {
+      fetchMock.restore();
+    });
+
+    it('getShoplist', () => {
+      const dataReceived = {
+        id: '1',
+        name: '222',
+      };
+      fetchMock.mock(`${API.url}shopping`, dataReceived, { method: 'GET' }).catch();
+
+      const expectedActions = [
+        { type: SHOPLIST_IS_LOADING, bool: true },
+        { type: GET_SHOPLIST, data: { id: '1', name: '222' } },
+        { type: SHOPLIST_IS_LOADING, bool: false },
+      ];
+
+      const store = mockStore({});
+
+      return store.dispatch(a.getShoplist()).then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+    });
+
+    it('addShoplist', () => {
+      const dataReceived = {
+        id: '1',
+        name: '222',
+      };
+      fetchMock
+        .mock(`${API.url}shopping/new`, dataReceived, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+        })
+        .catch();
+
+      const expectedActions = [{ type: ADD_SHOPLIST, data: { id: '1', name: '222' } }];
+
+      const store = mockStore({});
+
+      return store.dispatch(a.addShoplist(dataReceived)).then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+    });
+
+    it('updateShoplist', () => {
+      const dataReceived = {
+        id: '1',
+        name: '333',
+      };
+      fetchMock
+        .mock(`${API.url}shopping/edit/${dataReceived.id}`, dataReceived, {
+          method: 'PATCH',
+          headers: { 'content-type': 'application/json' },
+        })
+        .catch();
+
+      const expectedActions = [{ type: UPDATE_SHOPLIST, data: { id: '1', name: '333' } }];
+
+      const store = mockStore({});
+
+      return store.dispatch(a.updateShoplist(dataReceived)).then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+    });
+
+    it('deleteShoplist', () => {
+      const id = '1';
+      fetchMock
+        .mock(
+          `${API.url}shopping/delete/${id}`,
+          { _id: '1' },
+          {
+            method: 'DELETE',
+            headers: { 'content-type': 'application/json' },
+          },
+        )
+        .catch();
+
+      const expectedActions = [{ type: DELETE_SHOPLIST, id: '1' }];
+
+      const store = mockStore({});
+
+      return store.dispatch(a.deleteShoplist(id)).then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
     });
   });
 });
