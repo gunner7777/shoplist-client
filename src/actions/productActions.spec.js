@@ -19,7 +19,7 @@ const mockStore = configureMockStore(middlewares);
 
 describe('product actions test', () => {
   describe('sync actions', () => {
-    it('isLoading() - toggle loader', () => {
+    it('isLoading() - toggle loader view', () => {
       const expectedActions = {
         type: PRODUCT_IS_LOADING,
         bool: true,
@@ -28,7 +28,7 @@ describe('product actions test', () => {
       expect(a.isLoading(true)).toEqual(expectedActions);
     });
 
-    it('getProductsSuccess() - get all products', () => {
+    it('getProductsSuccess() - successfull get all products', () => {
       const expectedActions = {
         type: GET_ALL_PRODUCTS,
         products: ['1', '2'],
@@ -37,7 +37,7 @@ describe('product actions test', () => {
       expect(a.getProductsSuccess(['1', '2'])).toEqual(expectedActions);
     });
 
-    it('deleteProductSuccess() - delete product', () => {
+    it('deleteProductSuccess() - successfull delete chosen product', () => {
       const expectedActions = {
         type: DELETE_PRODUCT,
         id: '1',
@@ -46,7 +46,7 @@ describe('product actions test', () => {
       expect(a.deleteProductSuccess('1')).toEqual(expectedActions);
     });
 
-    it('addProductSuccess() - add product', () => {
+    it('addProductSuccess() - successfull add product', () => {
       const expectedActions = {
         type: SAVE_PRODUCT,
         data: '1',
@@ -55,7 +55,7 @@ describe('product actions test', () => {
       expect(a.addProductSuccess('1')).toEqual(expectedActions);
     });
 
-    it('getProductSuccess() - get product', () => {
+    it('getProductSuccess() - successfull get product with current id', () => {
       const expectedActions = {
         type: GET_PRODUCT,
         data: '1',
@@ -64,7 +64,7 @@ describe('product actions test', () => {
       expect(a.getProductSuccess('1')).toEqual(expectedActions);
     });
 
-    it('updateProductSuccess() - update product', () => {
+    it('updateProductSuccess() - successfull update product', () => {
       const expectedActions = {
         type: UPDATE_PRODUCT,
         data: '2',
@@ -84,11 +84,10 @@ describe('product actions test', () => {
 
   describe('async actions', () => {
     afterEach(() => {
-      // fetchMock.reset();
       fetchMock.restore();
     });
 
-    it('getProducts', () => {
+    it('getProducts() get products from db', () => {
       fetchMock.getOnce(`${API.url}products`, {
         headers: { 'content-type': 'application/json' },
         body: { data: [{ name: '1' }] },
@@ -107,7 +106,7 @@ describe('product actions test', () => {
       });
     });
 
-    it('deleteProduct', () => {
+    it('deleteProduct() delete product with current id from db', () => {
       const id = '1';
       fetchMock
         .mock(
@@ -115,8 +114,6 @@ describe('product actions test', () => {
           { id: '1' },
           {
             method: 'DELETE',
-            // headers: { 'content-type': 'application/json' },
-            // params: { id: 1 },
           },
         )
         .catch();
@@ -130,7 +127,7 @@ describe('product actions test', () => {
       });
     });
 
-    it('addProduct', () => {
+    it('addProduct() get product with current id', () => {
       fetchMock.mock(
         `${API.url}products/new`,
         {
@@ -182,7 +179,7 @@ describe('product actions test', () => {
       });
     });
 
-    it('updateProduct', () => {
+    it('updateProduct() update chosen product', () => {
       const dataReceived = {
         id: '1',
         name: '33',

@@ -11,7 +11,7 @@ props
 */
 
 const Typography = ({ tag, variant, modClass, children }) => {
-  const textTag = tag || 'p';
+  // const textTag = tag || 'p';
   const style = [];
   if (variant === 'title') {
     style.push('Typography-Title');
@@ -21,14 +21,20 @@ const Typography = ({ tag, variant, modClass, children }) => {
 
   const s = modClass ? style.push(modClass) : null;
 
-  return React.createElement(textTag, { className: style.join(' ') }, children);
+  return React.createElement(tag, { className: style.join(' ') }, children);
+};
+
+Typography.defaultProps = {
+  tag: 'p',
+  variant: 'text',
+  children: 'test',
 };
 
 Typography.propTypes = {
   variant: PropTypes.string,
   tag: PropTypes.string,
   modClass: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
 };
 
 export default Typography;

@@ -18,7 +18,7 @@ const mockStore = configureMockStore(middlewares);
 
 describe('product actions test', () => {
   describe('sync actions', () => {
-    it('isLoading() - toggle loader', () => {
+    it('isLoading() - toggle loader view', () => {
       const expectedActions = {
         type: SHOPLIST_IS_LOADING,
         bool: true,
@@ -27,7 +27,7 @@ describe('product actions test', () => {
       expect(a.isLoading(true)).toEqual(expectedActions);
     });
 
-    it('getShoplistSuccess() - toggle loader', () => {
+    it('getShoplistSuccess() - successfull get shoplist', () => {
       const expectedActions = {
         type: GET_SHOPLIST,
         data: { name: '1' },
@@ -36,7 +36,7 @@ describe('product actions test', () => {
       expect(a.getShoplistSuccess({ name: '1' })).toEqual(expectedActions);
     });
 
-    it('addShoplistSuccess() - toggle loader', () => {
+    it('addShoplistSuccess() - successfull add shoplist', () => {
       const expectedActions = {
         type: ADD_SHOPLIST,
         data: { name: '1' },
@@ -45,7 +45,7 @@ describe('product actions test', () => {
       expect(a.addShoplistSuccess({ name: '1' })).toEqual(expectedActions);
     });
 
-    it('updateShoplistSuccess() - toggle loader', () => {
+    it('updateShoplistSuccess() - successfull update', () => {
       const expectedActions = {
         type: UPDATE_SHOPLIST,
         data: { name: '2' },
@@ -54,7 +54,7 @@ describe('product actions test', () => {
       expect(a.updateShoplistSuccess({ name: '2' })).toEqual(expectedActions);
     });
 
-    it('deleteShoplistSuccess() - toggle loader', () => {
+    it('deleteShoplistSuccess() - successfull delete shoplist', () => {
       const expectedActions = {
         type: DELETE_SHOPLIST,
         id: '2',
@@ -63,7 +63,7 @@ describe('product actions test', () => {
       expect(a.deleteShoplistSuccess('2')).toEqual(expectedActions);
     });
 
-    it('toggleProductInShoplist() - toggle loader', () => {
+    it('toggleProductInShoplist() - toggle product list', () => {
       const expectedActions = {
         type: TOGGLE_PRODUCT_IN_SHOPLIST,
         chosenProducts: ['2', '3'],
@@ -72,7 +72,7 @@ describe('product actions test', () => {
       expect(a.toggleProductInShoplist(['2', '3'])).toEqual(expectedActions);
     });
 
-    it('cleanChosenProducts() - toggle loader', () => {
+    it('cleanChosenProducts() - clear chosen product after save', () => {
       const expectedActions = {
         type: CLEAN_CHOOSEN_PRODUCTS_IN_SHOPLIST,
       };
