@@ -1,14 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`typography tests Typography rendering with default props 1`] = `
+exports[`badge tests Badge rendering with default props 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Typography
-    tag="p"
-    variant="text"
+  Symbol(enzyme.__unrendered__): <Badge
+    Checked={false}
+    getIdProduct={[Function]}
+    productId="1"
   >
-    test
-  </Typography>,
+    <span>
+      Product
+    </span>
+  </Badge>,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -22,12 +25,25 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "host",
     "props": Object {
-      "children": "test",
-      "className": "Typography-Text",
+      "children": <span>
+        Product
+      </span>,
+      "className": "Badge ",
+      "onClick": [Function],
     },
     "ref": null,
-    "rendered": "test",
-    "type": "p",
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": "Product",
+      },
+      "ref": null,
+      "rendered": "Product",
+      "type": "span",
+    },
+    "type": "div",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
@@ -35,12 +51,25 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "host",
       "props": Object {
-        "children": "test",
-        "className": "Typography-Text",
+        "children": <span>
+          Product
+        </span>,
+        "className": "Badge ",
+        "onClick": [Function],
       },
       "ref": null,
-      "rendered": "test",
-      "type": "p",
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Product",
+        },
+        "ref": null,
+        "rendered": "Product",
+        "type": "span",
+      },
+      "type": "div",
     },
   ],
   Symbol(enzyme.__options__): Object {

@@ -8,7 +8,7 @@ describe('typography tests', () => {
     expect(TypographyComponent).toMatchSnapshot();
   });
 
-  it('Typography rendering with custom props', () => {
+  it('Typography set tag h3', () => {
     const props = {
       tag: 'h3',
       variant: 'title',
@@ -16,6 +16,28 @@ describe('typography tests', () => {
     };
 
     const TypographyComponent = shallow(<Typography {...props} />);
-    expect(TypographyComponent).toMatchSnapshot();
+    expect(TypographyComponent.find('h3')).toHaveLength(1);
+  });
+
+  it('Typography set title style with h3', () => {
+    const props = {
+      tag: 'h3',
+      variant: 'title',
+      children: 'custom props',
+    };
+
+    const TypographyComponent = shallow(<Typography {...props} />);
+    expect(TypographyComponent.props().className).toBe('Typography-Title');
+  });
+
+  it('Typography children', () => {
+    const props = {
+      tag: 'h3',
+      variant: 'title',
+      children: 'custom props',
+    };
+
+    const TypographyComponent = shallow(<Typography {...props} />);
+    expect(TypographyComponent.props().children).toBe('custom props');
   });
 });

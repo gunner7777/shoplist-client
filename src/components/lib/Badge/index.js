@@ -39,6 +39,13 @@ class Badge extends PureComponent {
   }
 }
 
+Badge.defaultProps = {
+  children: <span>Product</span>,
+  getIdProduct: () => {},
+  Checked: false,
+  productId: '1',
+};
+
 Badge.propTypes = {
   children: PropTypes.node.isRequired,
   getIdProduct: PropTypes.func,
