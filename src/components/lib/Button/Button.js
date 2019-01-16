@@ -25,7 +25,7 @@ const Button = ({ modClass, disabled, handleClick, children }) => {
 };
 
 Button.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.func,
   modClass: PropTypes.string,
   disabled: PropTypes.bool,
   children: PropTypes.node.isRequired,
@@ -33,6 +33,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   disabled: false,
+  children: <span>click</span>,
 };
 
 export default Button;
