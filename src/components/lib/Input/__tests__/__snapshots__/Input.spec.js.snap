@@ -1,0 +1,191 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`input tests input rendering input initial rendering 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Input
+    label="enter"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": <label
+        className="Input-Block"
+      >
+        <span
+          className="Input-Label"
+        >
+          enter
+        </span>
+        <input
+          className="Input-Input"
+          onChange={[Function]}
+          placeholder="enter"
+          type="text"
+        />
+      </label>,
+      "className": "Input",
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <span
+            className="Input-Label"
+          >
+            enter
+          </span>,
+          <input
+            className="Input-Input"
+            onChange={[Function]}
+            placeholder="enter"
+            type="text"
+          />,
+        ],
+        "className": "Input-Block",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "enter",
+            "className": "Input-Label",
+          },
+          "ref": null,
+          "rendered": "enter",
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "className": "Input-Input",
+            "onChange": [Function],
+            "placeholder": "enter",
+            "type": "text",
+            "value": undefined,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "input",
+        },
+      ],
+      "type": "label",
+    },
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <label
+          className="Input-Block"
+        >
+          <span
+            className="Input-Label"
+          >
+            enter
+          </span>
+          <input
+            className="Input-Input"
+            onChange={[Function]}
+            placeholder="enter"
+            type="text"
+          />
+        </label>,
+        "className": "Input",
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <span
+              className="Input-Label"
+            >
+              enter
+            </span>,
+            <input
+              className="Input-Input"
+              onChange={[Function]}
+              placeholder="enter"
+              type="text"
+            />,
+          ],
+          "className": "Input-Block",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "enter",
+              "className": "Input-Label",
+            },
+            "ref": null,
+            "rendered": "enter",
+            "type": "span",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "Input-Input",
+              "onChange": [Function],
+              "placeholder": "enter",
+              "type": "text",
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "input",
+          },
+        ],
+        "type": "label",
+      },
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

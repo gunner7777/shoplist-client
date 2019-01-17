@@ -50,6 +50,10 @@ class Input extends PureComponent {
   }
 }
 
+Input.defaultProps = {
+  label: 'enter',
+};
+
 Input.propTypes = {
   label: PropTypes.string,
 };
