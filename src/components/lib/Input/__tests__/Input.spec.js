@@ -9,20 +9,31 @@ describe('input tests', () => {
       expect(InputComponent).toMatchSnapshot();
     });
   });
-  // handlechange
+
   describe('props and state tests', () => {
+    const initialState = {
+      prevProps: '',
+      value: '',
+    };
+
+    const InputComponent = shallow(<Input label="text" />);
+
     it('label for input', () => {
-      const InputComponent = shallow(<Input label="text" />);
+      // const InputComponent = shallow(<Input label="text" />);
       expect(InputComponent.find('.Input-Label').text()).toEqual('text');
     });
 
     it('if change text in input', () => {
       const newText = '111';
-      const InputComponent = shallow(<Input label="text" />);
+      // const InputComponent = shallow(<Input label="text" />);
       InputComponent.find('.Input-Input').simulate('change', {
         target: { value: newText },
       });
       expect(InputComponent.state().value).toEqual(newText);
+    });
+
+    afterAll(() => {
+      InputComponent.setState(initialState);
     });
   });
 });
